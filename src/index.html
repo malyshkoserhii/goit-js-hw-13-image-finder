@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Pixabay_API</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Pixabay_API</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-
-<body>
-  <main>
-
-    <form class="search-form" id="search-form">
-      <input type="text" name="query" autocomplete="off" placeholder="Search images..." />
-      <button type="submit" class="btn-search">Search</button>
-    </form>
-
-    <button type="button" class="btn-load-more" data-action="load-more">
-      Load more
-    </button>
-
-    <ul class="gallery"></ul>
-
-  </main>
-
-  <!-- HTML image reference example. -->
-  <!-- <img src="./images/intro.png" alt="" width="640" /> -->
-</body>
-
+  <body>
+    <main class="container">
+      <form class="search-form" id="search-form">
+        <div class="form-row">
+        <div class="col-2-sm col-2-md col-3-lg">
+        <input
+          type="text"
+          name="query"
+          autocomplete="off"
+          class="form-control"
+          placeholder="Search images..."
+        />
+      </div>
+        <button type="submit" class="btn btn-primary btn-search">Search</button>
+      </div>
+      </form>
+      <ul class="row justify-content-between gallery"></ul>
+      <button type="button" class="btn btn-primary btn-load-more" data-action="load-more">
+        Load more
+      </button>
+    </main>
+  </body>
 </html>

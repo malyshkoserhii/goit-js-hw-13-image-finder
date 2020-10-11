@@ -47,7 +47,7 @@ function getPhotoes() {
     })
     .catch(error => {
       error({
-        text: 'Please enter a more specific query!',
+        text: error,
         hide: true,
         delay: 2000,
         width: '280px',

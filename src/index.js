@@ -12,7 +12,7 @@ refs.searchFormRef.addEventListener('submit', event => {
   const form = event.currentTarget;
   pixabayService.query = form.elements.query.value;
 
-  if (pixabayService !== '') {
+  if (pixabayService.query !== '') {
     refs.galleryContainerRef.innerHTML = '';
 
     pixabayService.resetPage();
@@ -37,16 +37,23 @@ function getPhotoes() {
     .fetchPhotoes()
     .then(photoes => {
       createGalleryMarkup(photoes);
-      refs.loadMoreButtonRef.classList.remove('is-hidden')
+      success({
+        text: 'Your query is successful!',
+        hide: true,
+        delay: 2000,
+        width: '280px',
+      });
+      refs.loadMoreButtonRef.classList.remove('is-hidden');
     })
-    .catch(
+    .catch(error => {
       error({
         text: 'Please enter a more specific query!',
         hide: true,
         delay: 2000,
         width: '280px',
-      }),
-    ).finally(() => {
-      refs.spinnerRef.classList.add('is-hidden');
+      });
     })
+    .finally(() => {
+      refs.spinnerRef.classList.add('is-hidden');
+    });
 }

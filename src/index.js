@@ -37,13 +37,20 @@ function getPhotoes() {
     .fetchPhotoes()
     .then(photoes => {
       createGalleryMarkup(photoes);
+     
       success({
         text: 'Your query is successful!',
         hide: true,
         delay: 2000,
         width: '280px',
       });
+
       refs.loadMoreButtonRef.classList.remove('is-hidden');
+
+      window.scrollTo({
+        top: document.documentElement.offsetHeight,
+        behavior: "smooth"
+    });
     })
     .catch(error => {
       error({

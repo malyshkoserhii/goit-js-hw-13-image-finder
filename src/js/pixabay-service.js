@@ -12,6 +12,8 @@ export default {
       `?key=${key}&q=${this.searchQuery}&page=${this.page}&per_page=12`,
     );
 
+    this.incrementPage();
+
     return response.data.hits;
 
     /* try-catch is the alternative way

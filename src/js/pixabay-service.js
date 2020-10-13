@@ -3,15 +3,19 @@ const key = '18518367-60788b25c9bdd8e2c754a390a';
 export default {
   searchQuery: '',
   page: 1,
-  fetchPhotoes() {
-    const url = `https://pixabay.com/api/?key=${key}&q=${this.searchQuery}&page=${this.page}&per_page=12`;
-    return fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        this.incrementPage();
-       
-        return data.hits;
-      });
+  async fetchPhotoes() {
+    try {
+      const url = `https://pixabay.com/api/?key=${key}&q=${this.searchQuery}&page=${this.page}&per_page=12`;
+      const request = await fetch(url);
+      const result = await request.json();
+      const data = await result.hits;
+      this.incrementPage();
+
+      return data;
+      
+    } catch (error) {
+      throw error;
+    }
   },
   resetPage() {
     this.page = 1;

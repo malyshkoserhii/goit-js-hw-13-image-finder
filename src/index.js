@@ -1,3 +1,5 @@
+import 'lightgallery.js';
+import '../node_modules/lightgallery.js/dist/css/lightgallery.css'
 import { alert, notice, info, success, error } from '@pnotify/core';
 import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
@@ -37,6 +39,8 @@ function getPhotoes() {
     .fetchPhotoes()
     .then(photoes => {
       createGalleryMarkup(photoes);
+
+      lightGallery(document.getElementById('ul-li'));
      
       success({
         text: 'Your query is successful!',
@@ -53,7 +57,15 @@ function getPhotoes() {
     });
     })
     .catch(error => {
-      error({
+      if (pixabayService.query === '') {
+        return error({
+          text: 'Please enter at least one symbol',
+          hide: true,
+          delay: 2000,
+          width: '280px',
+        });
+      }
+      return error({
         text: error,
         hide: true,
         delay: 2000,

@@ -52,6 +52,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
-    "handlebars": "^4.7.6"
+    "handlebars": "^4.7.6",
+    "lightgallery.js": "^1.4.0"
   }
 }

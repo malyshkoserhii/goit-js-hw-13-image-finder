@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { alert, notice, info, success, error } from '@pnotify/core';
+import '@pnotify/core/dist/BrightTheme.css';
+import '@pnotify/core/dist/PNotify.css';
 
 const key = '18518367-60788b25c9bdd8e2c754a390a';
 
@@ -13,6 +16,23 @@ export default {
     );
 
     this.incrementPage();
+
+    if(response.data.hits.length === 0) {
+      error({
+        text: 'Please enter a more specific query!',
+        hide: true,
+        delay: 3000,
+        width: '280px',
+      });
+    } else {
+      success({
+        text: 'Your query is successful!',
+        hide: true,
+        delay: 2000,
+        width: '280px',
+      });
+    }
+    console.log(response.data.hits.length);
 
     return response.data.hits;
 

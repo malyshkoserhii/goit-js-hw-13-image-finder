@@ -1,8 +1,5 @@
 import 'lightgallery.js';
 import '../node_modules/lightgallery.js/dist/css/lightgallery.css';
-import { alert, notice, info, success, error } from '@pnotify/core';
-import '@pnotify/core/dist/BrightTheme.css';
-import '@pnotify/core/dist/PNotify.css';
 import createGalleryMarkup from './js/create-gallery-markup';
 import pixabayService from './js/pixabay-service';
 import refs from './js/refs';
@@ -19,18 +16,6 @@ refs.searchFormRef.addEventListener('submit', event => {
 
     pixabayService.resetPage();
     getPhotoes();
-
-    if (pixabayService.query === '') {
-      error({
-        text: 'Please enter a more specific query!',
-        hide: true,
-        delay: 2000,
-        width: '280px',
-      })
-
-      return;
-    }
-
     form.reset();
   }
 });
@@ -46,20 +31,13 @@ function getPhotoes() {
     .then(photoes => {
       createGalleryMarkup(photoes);
       lightGallery(document.getElementById('ul-li'));
-      refs.loadMoreButtonRef.classList.remove('is-hidden');
       window.scrollTo({
         top: document.documentElement.offsetHeight,
         behavior: 'smooth',
       });
     })
     .catch(error =>
-      error({
-        text: `${error}`,
-        hide: true,
-        delay: 2000,
-        width: '280px',
-      }),
-    )
+     console.log(error))
     .finally(() => {
       refs.spinnerRef.classList.add('is-hidden');
     });

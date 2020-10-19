@@ -43,6 +43,11 @@ img {
 .gallery {
   margin-bottom: 40px;
 
+  &__photo {
+    height: 244px;
+    box-shadow: 1px 1px 0.7px 0.7px rgba(82, 82, 82, 0.75);
+  }
+
   &__photo:not(:last-of-type) {
     margin-bottom: 20px;
   }
@@ -63,8 +68,15 @@ img {
   }
 }
 
-.photo-card__wrapper {
-  margin-bottom: 15px;
+.photo-card {
+  &__wrapper {
+    margin-bottom: 15px;
+  }
+
+  &__image {
+    height: 170px;
+    object-fit: cover;
+  }
 }
 
 .stats-item {

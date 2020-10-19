@@ -1,8 +1,5 @@
 import 'lightgallery.js';
-import '../node_modules/lightgallery.js/dist/css/lightgallery.css'
-import { alert, notice, info, success, error } from '@pnotify/core';
-import '@pnotify/core/dist/BrightTheme.css';
-import '@pnotify/core/dist/PNotify.css';
+import '../node_modules/lightgallery.js/dist/css/lightgallery.css';
 import createGalleryMarkup from './js/create-gallery-markup';
 import pixabayService from './js/pixabay-service';
 import refs from './js/refs';
@@ -12,19 +9,13 @@ refs.searchFormRef.addEventListener('submit', event => {
   event.preventDefault();
 
   const form = event.currentTarget;
-  pixabayService.query = form.elements.query.value;
+  pixabayService.query = form.elements.query.value.trim();
 
   if (pixabayService.query !== '') {
     refs.galleryContainerRef.innerHTML = '';
 
     pixabayService.resetPage();
     getPhotoes();
-    success({
-      text: 'Your query is successful!',
-      hide: true,
-      delay: 2000,
-      width: '280px',
-    });
     form.reset();
   }
 });
@@ -39,39 +30,14 @@ function getPhotoes() {
     .fetchPhotoes()
     .then(photoes => {
       createGalleryMarkup(photoes);
-
       lightGallery(document.getElementById('ul-li'));
-     
-      success({
-        text: 'Your query is successful!',
-        hide: true,
-        delay: 2000,
-        width: '280px',
-      });
-
-      refs.loadMoreButtonRef.classList.remove('is-hidden');
-
       window.scrollTo({
         top: document.documentElement.offsetHeight,
-        behavior: "smooth"
-    });
-    })
-    .catch(error => {
-      if (pixabayService.query === '') {
-        return error({
-          text: 'Please enter at least one symbol',
-          hide: true,
-          delay: 2000,
-          width: '280px',
-        });
-      }
-      return error({
-        text: error,
-        hide: true,
-        delay: 2000,
-        width: '280px',
+        behavior: 'smooth',
       });
     })
+    .catch(error =>
+     console.log(error))
     .finally(() => {
       refs.spinnerRef.classList.add('is-hidden');
     });

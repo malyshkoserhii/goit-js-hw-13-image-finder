@@ -45,7 +45,10 @@ img {
 
   &__photo {
     height: 244px;
-    box-shadow: 1px 1px 0.7px 0.7px rgba(82, 82, 82, 0.75);
+
+    &:hover {
+      box-shadow: 1px 1px 1px 1px rgba(82, 82, 82, 0.75);
+    }
   }
 
   &__photo:not(:last-of-type) {
